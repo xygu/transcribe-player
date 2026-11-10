@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扒谱播放器</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <h1>扒谱播放器</h1>
+
+  <div class="load-row">
+    <label class="file-btn">
+      打开音频文件
+      <input type="file" id="fileInput" accept="audio/*">
+    </label>
+    <div class="samples">
+      <span>或快速加载：</span>
+      <button class="sample-btn" data-src="../data/Kendrick Lamar - N95 (Official Audio).wav">N95</button>
+      <button class="sample-btn" data-src="../data/Kendrick Lamar - N95 (Official Audio) 2.wav">N95 (2)</button>
+    </div>
+  </div>
+
+  <div id="trackName" class="track-name">未加载音频</div>
+
+  <div class="transport">
+    <button id="playBtn" class="play-btn" disabled>▶</button>
+    <span id="currentTime" class="time">0:00.0</span>
+    <div class="seek-wrap">
+      <div id="loopRegion" class="loop-region"></div>
+      <input type="range" id="seekBar" class="seek" min="0" max="1000" value="0" disabled>
+    </div>
+    <span id="duration" class="time">0:00.0</span>
+  </div>
+
+  <canvas id="waveform" class="waveform"></canvas>
+
+  <div class="loop-row">
+    <button id="setABtn" class="loop-btn" disabled>设 A 点</button>
+    <button id="setBBtn" class="loop-btn" disabled>设 B 点</button>
+    <button id="loopToggleBtn" class="loop-btn" disabled>循环: 开</button>
+    <button id="clearLoopBtn" class="loop-btn" disabled>清除</button>
+    <span id="loopStatus" class="loop-status">未设置循环区间</span>
+  </div>
+
+  <div class="speed-row">
+    <span>速度</span>
+    <input type="range" id="speedBar" min="0" max="1000" value="635">
+    <span id="speedValue" class="speed-value">1.00x</span>
+    <button class="loop-btn speed-preset" data-rate="0.3">0.3x</button>
+    <button class="loop-btn speed-preset" data-rate="0.5">0.5x</button>
+    <button class="loop-btn speed-preset" data-rate="0.75">0.75x</button>
+    <button class="loop-btn speed-preset active" data-rate="1">1x</button>
+  </div>
+
+  <div class="volume-row">
+    <span>音量</span>
+    <input type="range" id="volumeBar" min="0" max="100" value="100">
+  </div>
+
+  <div class="eq-head">
+    <span>EQ（拖动推子调增益，双击频谱归零）</span>
+    <button id="eqResetBtn" class="loop-btn">重置</button>
+  </div>
+  <canvas id="eqCanvas" class="eq-canvas"></canvas>
+
+  <div class="hint">空格 = 播放/暂停 &nbsp;|&nbsp; ←/→ = ±5 秒 &nbsp;|&nbsp; Shift+←/→ = ±0.5 秒 &nbsp;|&nbsp; ↑/↓ = 音量 &nbsp;|&nbsp; -/+ = 速度微调 &nbsp;|&nbsp; 0 = 恢复原速<br>
+  A = 设 A 点 &nbsp;|&nbsp; B = 设 B 点 &nbsp;|&nbsp; L = 循环开/关 &nbsp;|&nbsp; X = 清除循环 &nbsp;|&nbsp; R = 回到 A 点<br>
+  波形上点击 = 跳转 &nbsp;|&nbsp; 波形上拖动 = 直接框选 A-B 循环区间</div>
+</div>
+
+<audio id="audio" preload="auto"></audio>
+<script src="app.js"></script>
+</body>
+</html>
