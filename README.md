@@ -3,22 +3,10 @@
 一个纯前端的本地扒谱工具：区间循环、变速不变调、波形框选、10 段 EQ。
 无需安装任何依赖，浏览器打开即用。
 
-## 快速开始
+## 使用方法
 
-**方式一：直接打开单文件版（可分享）**
-
-双击 `transcribe-player.html`，点「打开音频文件」选择本地音频即可。
-如果它和 `data/` 文件夹放在一起，还可以点「N95」一键加载示例音频。
-
-**方式二：本地服务器（开发用）**
-
-```bash
-python3 server.py
-```
-
-然后打开 http://localhost:8765/player/
-
-> 服务器自己实现了 HTTP Range 支持，拖进度条秒跳，不用等缓冲。
+1. 下载 `transcribe-player.html`，双击打开，点「打开音频文件」选择本地音频即可开始。
+2. 想试听示例：把 `data/` 文件夹和 html 下载到同一目录，点页面上的「N95」按钮即可加载。
 
 ## 功能
 
@@ -44,10 +32,3 @@ python3 server.py
 | R | 回到 A 点 |
 
 EQ 面板上：拖动推子调增益（±12dB），双击归零。
-
-## 文件说明
-
-- `player/` — 源代码（`index.html` / `style.css` / `app.js`）
-- `player/build.py` — 打包脚本，运行后生成单文件版
-- `transcribe-player.html` — 独立单文件版（所有 CSS/JS 已内联，可直接分享）
-- `server.py` — 带 Range 支持的本地静态服务器
